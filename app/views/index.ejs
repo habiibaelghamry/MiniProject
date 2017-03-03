@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Senior Students' Portfolios</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="css/round-about.css" rel="stylesheet">
+
+   
+
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container">
+            
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li>
+                        <a href="/views/register.html">Register</a>
+                    </li>
+                    <li>
+                        <a href="/views/login.html">Login</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+
+    <!-- Page Content -->
+    <div class="container">
+
+
+        <!-- Team Members Row -->
+        <div class="row">
+            <div class="col-lg-12">
+                <h2 class="page-header">Students' Work</h2>
+            </div>
+                <% if(portfolio.length == 0){ %>
+                    <h3><small> No available portfolios </small></h3>
+               <% } else { %>   
+            
+              <% for(var i = 0; i<portfolio.length; i++){ %>
+              <div class="col-lg-4 col-sm-6 text-center">
+                
+              <% if(portfolio[i].profilePicture == " "){ %>
+                    <img class="img-circle img-center" src="http://placehold.it/200x200" width="170px" height="150px" alt="">
+              <%  } else { %>
+                <img class="img-circle img-center" src="/uploads/<%= portfolio[i].profilePicture %>" width="170px" height="150px" >
+                <% } %>
+                  
+                        <h3><small> Name: <%= portfolio[i].name %></small> <br>
+                        <small>Description: <%= portfolio[i].description %> </small><br>
+                        <% var c=0;
+                        for(var j=0;j<work.length; j++){
+                            if(c<2 && work[j].student.equals(portfolio[i].student)){ %>
+                             <small>Title: <%= work[j].title%> </small> <br>
+                            <% c++; } %>
+
+                       <% } %>
+                        </h3>
+            </div>
+     
+  <% }%>
+  <% } %>
+
+<div class = "text-center">
+<% if (pageCount > 1) { %>  
+<ul class="pagination">  
+  <% if (currentPage > 1) { %>
+      <li><a href="/?page=1">&laquo;</a></li>
+  <% } %>
+  <% var i = 1;
+  if (currentPage > 5) {
+  i = +currentPage - 4;
+  } %>
+  <% if (i !== 1) { %>
+      <li class="disabled"><a href="#">...</a></li>
+  <% } %>
+  <% for (i; i<=pageCount; i++) { %>
+    <% if (currentPage == i) { %>
+        <li class="active"><span><%= i %> <span class="sr-only">(current)</span></span></li>
+    <% } else { %>
+        <li><a href="/?page=<%= i %>"><%= i %></a></li>
+    <% } %>
+    <% if (i == (+currentPage + 4)) { %>
+        <li class="disabled"><a href="#">...</a></li>
+    <% break; } %>
+  <% } %>
+  <% if (currentPage != pageCount) { %>
+      <li><a href="/?page=<%= pageCount %>">&raquo;</a></li>
+  <% } %>
+</ul>  
+<%  }%>
+</div>
+
+           
+           
+            </div>
+        </div>
+
+        <hr>
+
+        <!-- Footer -->
+        <footer>
+          
+                
+                <!-- /.col-lg-12 -->
+            
+            <!-- /.row -->
+        </footer>
+
+    </div>
+    <!-- /.container -->
+
+    <!-- jQuery -->
+
+
+</body>
+
+</html>

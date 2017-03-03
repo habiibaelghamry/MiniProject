@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>My Profile</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="../css/round-about.css" rel="stylesheet">
+
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container">
+           
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li>
+                        <a href="/">Log Out</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+
+        <div class="row">
+            <div class="col-lg-12">
+                <h2 class="page-header">My Profile</h2>
+            </div>
+            
+             <div class="col-lg-4 col-sm-6 text-center">
+               
+                <% if(portfolio == "yes") { %>
+                <img class="img-circle img-responsive img-center" src="http://placehold.it/200x200" alt="">
+                <h3>My Portfolio <br>
+                    <small> <%= name %> </small> <br>
+                    <small> Description: <%= description %> </small> <br>
+                    <small> Title: <%= title %> </small>
+                </h3>
+                
+                    <a href="update.ejs"> Add work </a>
+              <%  } else{ %>
+
+                <h5>You don't have a portfolio
+                </h5>
+                <a href="portfolio.ejs"> create one? </a>
+
+             <% } %>
+                
+            </div>
+                <div class="row">
+            <div class="col-lg-12">
+                <h2 class="page-header">Students' Work</h2>
+            </div>
+                <% if(portfolio.length == 0){ %>
+                    <h3><small> No available portfolios </small></h3>
+               <% } else { %>
+              <% for(var i = 0; i<portfolio.length; i++){ %>
+              <div class="col-lg-4 col-sm-6 text-center">
+                <img class="img-circle img-responsive img-center" src="http://placehold.it/200x200" alt="">
+                  
+                        <h3><small> Name: <%= portfolio[i].name %></small> <br>
+                        <small>Description: <%= portfolio[i].description %> </small><br>
+                        <% var c=0;
+                        for(var j=0;j<work.length; j++){
+                            if(c<2 && work[j].student._id == portfolio[i].student._id){ %>
+                             <small>Title: <%= work[j].title %> </small> <br>
+                            <% c++; } %>
+
+                       <% } %>
+            </h3>
+            </div>
+            <%} } %>
+             <!--  <div class="row">
+             <div class="col-lg-12">
+                <h2 class="page-header">Students' Work</h2>
+            
+                <% if(portfolios.length == 0){ %>
+                    <h3><small> No available portfolios </small></h3>
+                    </div>
+               <% } else { %>
+              <% for(var i = 0; i<portfolios.length; i++){ %>
+              <div class="col-lg-4 col-sm-6 text-center">
+                <img class="img-circle img-responsive img-center" src="http://placehold.it/200x200" alt="">
+                  
+                        <h3><small><%= portfolios[i].name %></small></h3> <br>
+                        <h3><small>Description: <%= portfolios[i].description %> </small></h3> <br>
+
+                    
+            </div>
+            <%} } %>
+ -->
+
+         </div>   
+
+        <hr>
+
+        <footer>
+            <div class="row">
+               
+            </div>
+        </footer>
+
+    </div>
+
+
+</body>
+
+</html>
